@@ -1,11 +1,36 @@
+import Produtos from "./../Database/Api_Produtos.js"
+import Usuario from "./../Database/Api_Usuario.js"
 
-function captarDados(){
+const logar = await Usuario.logarUsuario({
+    email: "juju@email.com",
+    password: "98765"
+  })
+
+async function captarDados(){
+    
     let btn = document.getElementsByClassName("modal--Footer")[0]
-    btn.addEventListener("click",(evt)=>{
-        console.log(btn)
+    btn.addEventListener("click",async(evt)=>{
+        
     evt.preventDefault()
-        let nome = document.getElementById("nome")
-        console.log(nome)
+        let nomep = document.getElementById("nome").value
+        let descricaop = document.getElementById("descricao").value
+        let categoriap = document.getElementsByClassName("btn--ativo")[0].innerText
+        let precop = document.getElementById("preco").value
+        let imagep = document.getElementById("image").value
+    
+        let produto = {
+            nome: `${nomep}`,
+            descricao: `${descricaop}`,
+            categoria: `${categoriap}`,
+            preco: `${parseInt(precop)}`,
+            imagem: `${imagep}`
+        }
+        console.log(produto)
+
+        let createProduto = await Produtos.criarProduto(produto)
+
+        Criarli(createProduto)
+
     })
 
 }
@@ -26,14 +51,14 @@ function mudarCorBotão(){
             return itemclicado.innerText
         }
     })
-
-
-   
-
-
-
-
 }
 
+function Criarli(dados){
+    console.log(dados)
+}
 mudarCorBotão()
 captarDados()
+
+
+
+
