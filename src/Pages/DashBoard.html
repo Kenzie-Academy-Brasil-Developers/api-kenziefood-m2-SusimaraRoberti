@@ -5,8 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./../Style/dashBoard.css">
 </head>
 <body>
     
+
+
+    <div class="modal--Conteiner">
+        <div class="modal--NovoProduto">
+            <div class="modal--Header">
+                <small>Cadastro de Produto</small> 
+                <button>x</button>
+            </div>
+
+            <form action="" class="form--Criar">
+                <label for="nome">Nome do Produto</label>
+                <input class="input--nome" type="text" name="nome" id="nome">
+
+                <label for="descricao">Descrição</label>
+                <input class="input--descricao" type="text" name="descricao" id="descricao">
+
+                <label for="categorias">Categorias</label>
+                
+                <ul id="categorias">
+                    <li>
+                        Panificadora
+                    </li>
+                    <li>
+                        Frutas
+                    </li>
+                    <li>
+                        Bebidas
+                    </li>
+                </ul>
+
+                <label for="preco">Valor do Produto</label>
+                <input class="input--preco" type="text" name="preco" id="preco">
+
+                <label for="image">Link da Imagem</label>
+                <input class="input--link" type="text" name="image" id="image">
+
+                <input class="modal--Footer" type="submit" value="Cadastrar Produto">
+            </form>
+
+         </div>
+    </div>
+
+    <script src="./../Js/Controller/dashBoardControler.js"></script>
 </body>
 </html>
