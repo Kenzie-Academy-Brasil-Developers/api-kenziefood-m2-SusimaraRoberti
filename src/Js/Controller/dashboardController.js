@@ -1,8 +1,12 @@
 import Produtos  from "./../Database/Api_Produtos.js"
 
-const produtosPrivadoss = await Produtos.mostrarProdutosPrivados()
 
-const ul = document.getElementsByClassName("lista")[0]
+
+const produtosPrivados = await Produtos.mostrarProdutosPrivados()
+
+const ul = document.getElementsByClassName("lista")
+
+const buscar = document.getElementById("buscar")
 
 class Dashboard {
    
@@ -53,11 +57,14 @@ class Dashboard {
                 const filtro = produtosPrivados.filter((e)=> e.id == editar.classList[1])[0]
                 dadosEditar(filtro.nome,filtro.descricao,filtro.categoria,filtro.preco,filtro.imagem,id)
             })
+
+
             deletar.addEventListener("click", (evt)=> {
                 evt.preventDefault
                 deletarProdutos(deletar.id)
                 }
             )
+
             li.appendChild(div)
             div.appendChild(img)
             div.appendChild(nome)
@@ -75,11 +82,10 @@ class Dashboard {
     }
 }
 
-Dashboard.inicializarTemplate(produtosPrivadoss)
+Dashboard.inicializarTemplate(produtosPrivados)
 
 
 async function captarDados(){
-    let produtosPrivados = await Produtos.mostrarProdutosPrivados()
     
     let btn = document.getElementsByClassName("modal--Footer")[0]
     btn.addEventListener("click",async(evt)=>{
@@ -100,9 +106,12 @@ async function captarDados(){
         }
 
         let createProduto = await Produtos.criarProduto(produto)
-        await Dashboard.inicializarTemplate(produtosPrivados)
+        Dashboard.inicializarTemplate(produtosPrivados)
+
         const modalCriarProduto = document.getElementsByClassName("modal--Conteiner-NovoProduto")[0]
         modalCriarProduto.style.display = "none"
+
+
     })
 
 }
@@ -172,7 +181,6 @@ function fechaModalAbreModal(){
 
 
 async function dadosEditar(nome,descricao,categoria,valor,linkImg,id){
-    const produtosPrivados = await Produtos.mostrarProdutosPrivados()
     const  inpNome = document.getElementById("nome--Editar")
     const inpDescr = document.getElementById("descricao--Editar")
     const categorias = document.getElementById("categorias--Editar")
@@ -201,11 +209,12 @@ async function dadosEditar(nome,descricao,categoria,valor,linkImg,id){
        let teste =  Produtos.editarProduto(id,produto)
        
         Dashboard.inicializarTemplate(produtosPrivados)
+
         const modal = document.getElementsByClassName("modal--Conteiner-Editar")[0]
         modal.style.display = "none"
     })
 
-   
+
 
 }
 
@@ -229,13 +238,32 @@ async function dadosEditar(nome,descricao,categoria,valor,linkImg,id){
 
 async function deletarProdutos(id){
  await Produtos.deletarProduto(id)
- const produtosPrivados = await Produtos.mostrarProdutosPrivados()
     await Dashboard.inicializarTemplate(produtosPrivados)
 }
 
+function buscarProdutos() {
+    ul.innerHTML = "";
+    const dataBusca = [];
+  
+  
+      for (let i = 0; i < produtosPrivados.length; i++) {
+        if (
+          produtosPrivados[i].nome
+            .toLowerCase()
+            .includes(buscar.value.toLowerCase()) == true ||
+          produtosPrivados[i].categoria
+            .toLowerCase()
+            .includes(buscar.value.toLowerCase) == true
+        ) {
+          dataBusca.push(produtosPrivados[i]);
+        }
+      }
+      Dashboard.inicializarTemplate(dataBusca)
+      buscar.addEventListener("keypress", buscarProdutos);
+    }
+    
 
-
-
+buscarProdutos()
 mudarCorBotão()
 mudarCorBotão2()
 captarDados()
