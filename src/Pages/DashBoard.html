@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../Style/reset.css" />
+    <link rel="stylesheet" href="../Style/dashboard.css" />
+    <title>Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <div class="header--logo">
+        <h1>Kenzie</h1>
+        <p>Food</p>
+      </div>
+      <div class="header--pesquisa">
+        <div class="pesquisa--input">
+          <img
+            class="input--img"
+            src="../images/pesquisa (2).png"
+            alt="pesquisa"
+          />
+          <input
+            id="campoPesquisa"
+            type="text"
+            placeholder="Pesquisar por produto"
+          />
+        </div>
+        <button id="home" class="pesquisa--button texto" type="button">
+          <img class="button--img--home" src="../images/home.png" alt="user" />
+        </button>
+        <button id="logout" class="pesquisa--button" type="button">
+          <img
+            class="button--img--logout"
+            src="../images/logout.png"
+            alt="user"
+          />
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="navegacao">
+        <nav id="categorias" class="navegacao--categorias">
+          <button class="categorias--selecionado" id="todos">Todos</button>
+          <button id="panificadora" class="categorias categorias--panificadora">
+            <img
+              class="panificadora--img"
+              src="../images/pao-.png"
+              alt="Pão"
+            />Panificadora
+          </button>
+          <button id="frutas" class="categorias categorias--frutas">
+            <img
+              class="frutas--img"
+              src="../images/frutas-.png"
+              alt="Frutas"
+            />Frutas
+          </button>
+          <button id="bebidas" class="categorias categorias--bebidas">
+            <img
+              class="bebidas--img"
+              src="../images/bebida.png"
+              alt="Bebida"
+            />Bebidas
+          </button>
+        </nav>
+        <div class="navegacao--adicionarProduto">
+          <button class="adicionarProduto--button">
+            Adicionar novo produto
+          </button>
+        </div>
+      </section>
+      <section class="produtos">
+        <div class="produtos--tabela">
+          <h3 class="tabela--coluna1">Produto</h3>
+          <h3 class="tabela--coluna2">Categoria</h3>
+          <h3 class="tabela--coluna3">Descrição</h3>
+          <h3 class="tabela--coluna4">Ações</h3>
+        </div>
+
+        <ul id="ul" class="lista">
+         
+        </ul>
+
+      </section>
+    </main>
+
+    <div class="modal--Conteiner-NovoProduto">
+      <div class="modal--NovoProduto">
+          <div class="modal--Header">
+              <small>Cadastro de Produto</small> 
+              <button class="Modal--NovoProduto-Fecahr">x</button>
+          </div>
+          <form action="" class="form--Criar">
+              <label for="nome">Nome do Produto</label>
+              <input class="input--nome" type="text" name="nome" id="nome">
+              <label for="descricao">Descrição</label>
+              <input class="input--descricao" type="text" name="descricao" id="descricao">
+              <label for="categorias">Categorias</label>    
+              <ul id="categorias--Modal-Criar">
+                  <li>Panificadora</li>
+                  <li>Frutas</li>
+                  <li>Bebidas</li>
+              </ul>
+              <label for="preco">Valor do Produto</label>
+              <input class="input--preco" type="text" name="preco" id="preco">
+              <label for="image">Link da Imagem</label>
+              <input class="input--link" type="text" name="image" id="image">
+              <input class="modal--Footer" type="submit" value="Cadastrar Produto">
+          </form>
+       </div>
+  </div>
+
+  <div class="modal--Conteiner-Editar">
+    <div class="modal--Editar">
+        <div class="Editar--Header">
+            <small>Editar Produto</small> 
+            <button class="Modal--Editar--Fechar">x</button>
+        </div>
+        <form action="" class="form--Editar">
+            <label for="nome--Editar">Nome do Produto</label>
+            <input class="input--nome" type="text" name="nome" id="nome--Editar">
+            <label for="descricao--Editar">Descrição</label>
+            <input class="input--descricao" type="text" name="descricao" id="descricao--Editar">
+            <label for="categorias--Editar">Categorias</label>   
+            <ul id="categorias--Editar">
+                <li>Panificadora</li>
+                <li>Frutas</li>
+                <li>Bebidas</li>
+            </ul>
+            <label for="preco--Editar">Valor do Produto</label>
+            <input class="input--preco" type="text" name="preco" id="preco--Editar">
+            <label for="image--Editar">Link da Imagem</label>
+            <input class="input--link" type="text" name="image" id="image--Editar">
+            <div class="div--Footer--Editar"><button class="Modal--Editar--Fechar">Excluir</button> <input class="Footer--Editar" type="submit" value="Editar Produto"></div>           
+        </form>
+     </div>
+</div>
+
+
+
+    <script type="module" src="./../Js/Database/Api_Produtos.js"></script>
+    <script type="module" src="./../Js/Database/Api_Usuario.js"></script>
+    <script type="module" src="./../Js/Controller/dashboardController.js"></script>
+    <script type="module" src="./../Js/Models/dashboard.js"></script>
+  </body>
+</html>
